@@ -1,0 +1,18 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %}Documentation for {{ pgag.name }}{% endblock %}
+{% block main_heading %}Documentation for {{ pgag.name }}{% endblock %}
+
+{% block content %}
+{% for ev in evidence %}
+<h3><div>{{ ev.date }}</div> {{ ev.source }}</h3></p>
+<p>
+<quotation>
+{{ ev.quote|linebreaksbr }}
+</quotation>
+</p>
+
+<hr/>
+{% endfor %}
+
+{% endblock %}

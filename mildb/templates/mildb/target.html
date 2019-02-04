@@ -1,0 +1,18 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %}Targets{% endblock %}
+{% block main_heading %}Targets{% endblock %}
+
+{% block content %}
+
+<p>
+Select a target type from the list below. 
+</p>
+<table>
+  {% for targ in targets %}
+  <tr>
+    <td><a href="/target/{{ targ.id }}/">{{ targ.type }}</a></td>
+  </tr>			 
+  {% endfor %}
+</table>
+{% endblock %}

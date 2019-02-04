@@ -1,0 +1,18 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %} Ethnic Targets {% endblock %}
+{% block main_heading %} Ethnic Targets{% endblock %}
+
+{% block content %}
+
+<p>
+Select an ethnic target group from the list below. 
+</p>
+<table>
+  {% for et in ethnic_targs %}
+  <tr>
+    <td><a href="/ethnictarg/{{ et.id }}/">{{ et.type }}</a></td>
+  </tr>			 
+  {% endfor %}
+</table>
+{% endblock %}

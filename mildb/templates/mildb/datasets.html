@@ -1,0 +1,56 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %}Datasets{% endblock %}
+{% block main_heading %}Datasets{% endblock %}
+
+{% block content %}
+
+
+<p>
+The following datasets are available for download:
+</p>
+<p>&nbsp;</p>
+<hr/>
+
+
+<h2>Basic PGAG information</h2>
+<p>Download <a href="/datasets/pgag_basic/">data</a> in CSV format.
+<h3>Notes</h3>
+<p>This data contains the following variables:</p>
+<quotation>
+  <p>
+    <b>pgag</b>: Name of PGAG<br/>
+    <b>countryabbrev</b>: Abbreviation of PGAG's country<br/>
+    <b>type</b>: Type of PGAG
+  </p>
+</quotatation>
+
+<hr/>
+
+<h2>Country-level PGAG activity by year</h2>
+<p>Download <a href="/datasets/country_year_active/">data</a> in CSV format.
+<h3>Notes</h3>
+<p>
+  This data contains years as case labels and country abbreviation as column
+  labels.  Each cell is a 0 or 1 depending on whether <i>any</i>
+  PGAG in the country (column) had an operation in a year (row).
+</p>
+</quotatation>
+
+<hr/>
+
+<h2>Active PGAGs Worldwide Per Year</h2>
+<p>Download <a href="/datasets/year_active/">data</a> in CSV format.
+<h3>Notes</h3>
+<p>This data contains the following variables:</p>
+<quotation>
+  <p>
+    <b>year</b>: Year of the data collection period<br/>
+    <b>activegroups</b>: How many groups had an operation this year
+  </p>
+</quotatation>
+<p>This is, of course, derivable from the previous dataset...</p>
+
+
+
+{% endblock %}

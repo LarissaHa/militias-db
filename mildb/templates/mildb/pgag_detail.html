@@ -1,0 +1,479 @@
+{% extends "mildb/newbase.html" %}
+{% load humanize %}
+
+{% block title %}Pro-Government Militia{% endblock %}
+{% block main_heading %}{{ pgag.name }} ({{ pgag.country.name}}) {% endblock %}
+
+{% block content %}
+
+  <h3> Basic Group Information </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+<tr>
+    <td><b>Name assigned by coder:</b></td>
+    <td>{% if pgag.madeup %}
+    yes
+    {% else %}
+    no
+    {% endif %}
+    </td>
+  </tr>
+  <tr>
+ <td><b>PGM ID Number:</b></td>
+    <td>{{pgag.id}}
+    </td>
+  </tr>
+  <tr>
+    <td><b>Country:</b></td>
+    <td><a href="/country/{{ pgag.country.id }}">{{ pgag.country.name }}</a></td>
+  </tr>
+  <tr>
+    <td><b>Date formed:</b></td>
+    <td>{{ pgag.date_formed|naturalday|default_if_none:"Unknown" }}</td>
+  </tr>
+   <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;Accuracy of date formed:</td>
+      <td>{% ifequal pgag.accuracy_formed 'dy' %}day{% endifequal %}
+      {% ifequal pgag.accuracy_formed 'mo' %}month{% endifequal %}
+      {% ifequal pgag.accuracy_formed 'yr' %}year{% endifequal %}
+      {% ifequal pgag.accuracy_formed 'dec' %}decade{% endifequal %}
+      </td>
+  </tr>
+   <tr>
+    <td><b>Details of Formation:</b></td>
+    <td>{{ pgag.origin }}</td>
+  </tr>
+  <tr>
+    <td><b>Date dissolved:</b></td>
+    <td>{{ pgag.date_dissolved|naturalday|default_if_none:"Unknown" }}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;Accuracy of date dissolved:</td>
+    <td>{% ifequal pgag.accuracy_dissolved 'dy' %}day{% endifequal %}
+      {% ifequal pgag.accuracy_dissolved 'mo' %}month{% endifequal %}
+      {% ifequal pgag.accuracy_dissolved 'yr' %}year{% endifequal %}
+      {% ifequal pgag.accuracy_dissolved 'dec' %}decade{% endifequal %}
+      </td>
+    </tr>
+    </tr>
+    <tr>
+    <td><b>Details of Termination:</b></td>
+    <td>{{ pgag.termination }}</td>
+  </tr>
+   <tr>
+    <td><b>Termination Type(s):</b></td>
+        <td>
+      {% if pgag.termination_types.all %}
+      {% for tt in pgag.termination_types.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/termtype/{{ tt.id }}/">{{ tt.type }}</a>{% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+  </tr>
+</table>
+
+<h3> Former and Successor Group Information </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+  <tr>
+      <td><b>Predecessor group(s):</b></td>
+    <td>
+      {% if pgag.predecessor_group.all %}
+      {% for sg in pgag.predecessor_group.all %}
+      {% if forloop.counter0 %}, {% else %}{% endif %}
+      <a href="/pgag/{{ sg.id }}/">{{ sg.name }}</a>
+      {% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td><b>Successor group(s):</b></td>
+    <td>
+      {% if pgag.successor_group.all %}
+      {% for sg in pgag.successor_group.all %}
+      {% if forloop.counter0 %}, {% else %}{% endif %}
+      <a href="/pgag/{{ sg.id }}/">{{ sg.name }}</a>
+      {% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td><b>Private Military Company?</b></td>
+    <td>{{ pgag.pmc }}</td>
+  </tr>
+   <tr>
+    <td><b>Former Group?</b></td>
+    <td>{% ifequal pgag.prior_group 'noinf' %}no information{% else %}
+    {{ pgag.prior_group }}{% endifequal %}</td>
+  </tr>
+   <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;Former Armed Group?</td>
+    <td>{% ifequal pgag.prior_armed 'noinf' %}no information{% else %}
+    {{ pgag.prior_armed }}{% endifequal %}</td>
+  </tr>
+    <tr>
+    <td><b>Former Rebel Group?</b></td>
+    <td>{% ifequal pgag.prior_rebel 'noinf' %}no information{% else %}
+    {{ pgag.prior_rebel }}{% endifequal %}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;Former Rebel Group UCDP ID:</td>
+     {% if pgag.prior_ucdp.all %}
+    <td>{{ pgag.prior_ucdp.all|join:", " }}</td>
+    {% else %}
+    <td> none </td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td><b>PGM Becomes Rebel Group?</b></td>
+    <td>{% ifequal pgag.post_rebel 'noinf' %}no information{% else %}
+    {{ pgag.post_rebel }}{% endifequal %}</td>
+  </tr>
+    <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;Successor Rebel Group UCDP ID:</td>
+     {% if pgag.post_ucdp.all %}
+    <td>{{ pgag.post_ucdp.all|join:", " }}</td>
+    {% else %}
+    <td> none </td>
+    {% endif %}
+  </tr>
+</table>
+
+<h3> Government Relation, Support, and Training </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+  
+  <!-- <tr> -->
+  <!--   <td><b>Government Relation:</b></td> -->
+  <!--   <td><a href="/type/{{ pgag.government_relation }}/">{{ pname }}</a></td> -->
+  <!-- </tr> -->
+ <tr>
+    <td><b>Created by the Government?:</b></td>
+    <td>{% ifequal pgag.gov_formed 'noinf' %}no information{% else %}
+    {{ pgag.gov_formed }}{% endifequal %}</td>
+  </tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;Main Creating Government Institution:</td>
+    <td>
+      {% if pgag.government_creator.all %}
+      {% for sg in pgag.government_creator.all %}{% if forloop.counter0 %}; {% else %}{% endif %}{{sg.name}}{% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+  <tr>
+    <td><b>Government Link(s):</b></td>
+    <td>
+      {% if pgag.government_link.all %}
+      {% for sg in pgag.government_link.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/link/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+    <!-- <td>{{ pgag.government_link.all|join:", " }}</td> -->
+  </tr>
+    <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;If link to party, name of party:</td>
+    <td>{{ pgag.party_id }}</td>
+  </tr>
+
+  </tr>
+  <tr>
+    <td><b>Training and Equipment:</b></td>
+    <td>{% ifequal pgag.government_trained 'noinf' %}no information{% else %}
+    {{ pgag.government_trained }}{% endifequal %}</td>
+  </tr>
+  <tr>
+    <td><b>Shared Information and Joint Operations:</b></td>
+    <td>{% ifequal pgag.information_shared 'noinf' %}no information{% else %}
+    {{ pgag.information_shared }}{% endifequal %}</td>
+  </tr>
+  <tr>
+    <td><b>Shared Personnel:</b></td>
+    <td>{% ifequal pgag.personnel_shared 'noinf' %}no information{% else %}
+    {{ pgag.personnel_shared }}{% endifequal %}</td>
+  </tr>
+  <tr>
+    <td><b>Type(s) of Material Support:</b></td>
+        <td>
+      {% if pgag.support_types.all %}
+      {% for sg in pgag.support_types.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/support/{{ sg.id }}/">{{ sg.type }}</a>{% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+    <!-- <td>{{ pgag.support_types.all|join:", " }}</td> -->
+  </tr>
+  <tr>
+    <td><b>State Sponsor(s):</b></td>
+    <td>
+      {% if pgag.supporters.all %}
+      {% for sg in pgag.supporters.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/country/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td><b>Other Connection(s):</b></td>
+    <td>{{ pgag.other_connection }}</td>
+  </tr>
+</table>
+
+<h3> Group Characteristics </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+  
+  <tr>
+    <td><b>Membership:</b></td>
+    <td>
+      {% if pgag.membership.all %}
+      {% for sg in pgag.membership.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/member/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
+      {% else %}
+      Unknown
+      {% endif %}
+    </td>
+  </tr>
+
+    <tr>
+    <td><b>Primary Membership:</b></td>
+    <td>{% ifequal pgag.primary_mem 'noinf' %}no information{% else %}
+    {{ pgag.primary_mem }}{% endifequal %}</td>
+  </tr>
+  </tr>
+    <tr>
+    <td><b>Alternative Primary Membership:</b></td>
+    <td>{% ifequal pgag.alt_primary_mem 'noinf' %}no information{% else %}
+    {{ pgag.alt_primary_mem }}{% endifequal %}</td>
+  </tr>
+  <tr>
+    <td><b>Location:</b></td>
+    <td>{{ pgag.location }}</td>
+  </tr>
+  <tr>
+    <td><b>Force Strength:</b></td>
+    <td>[{{ pgag.headcount_low|default_if_none:"unknown" }},
+      {{ pgag.headcount_high|default_if_none:"unknown" }}]</td>
+  </tr>
+  <tr>
+    <td><b>Target(s):</b></td>
+    <td>
+      {% if pgag.target.all %}
+      {% for sg in pgag.target.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/target/{{ sg.id }}/">{{ sg.type }}</a>{% endfor %}
+      {% else %}
+      None
+      {% endif %}
+    </td>
+  <tr>
+    <td><b>Purpose(s):</b></td>
+        <td>
+      {% if pgag.purpose.all %}
+      {% for sg in pgag.purpose.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/purpose/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
+      {% else %}
+      None
+      {% endif %}
+    </td>
+  </tr>
+</table>  
+<h3> Ethnic Characteristics </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+<tr>
+    <td><b>Ethnic Target(s):</b></td>
+        <td>
+      {% if pgag.ethnic_targ.all %}
+      {% for et in pgag.ethnic_targ.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/ethnictarg/{{ et.id }}/">{{ et.type }}</a>{% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;Quality of Information for Ethnic Targeting:</td>
+   <td>{% ifequal pgag.info_ethnic_targ 'giv' %}given{% endifequal %}
+      {% ifequal pgag.info_ethnic_targ 'inf' %}inferred{% endifequal %}
+      {% ifequal pgag.info_ethnic_targ 'na' %}not applicable{% endifequal %}
+      </td>
+  </tr>
+<tr>
+    <td><b>Ethnic Membership:</b></td>
+        <td>
+      {% if pgag.ethnic_mem.all %}
+      {% for em in pgag.ethnic_mem.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/ethnicmem/{{ em.id }}/">{{ em.type }}</a>{% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;Quality of Information for Ethnic Membership:</td>
+ <td>{% ifequal pgag.info_ethnic_mem 'giv' %}given{% endifequal %}
+      {% ifequal pgag.info_ethnic_mem 'inf' %}inferred{% endifequal %}
+      {% ifequal pgag.info_ethnic_mem 'na' %}not applicable{% endifequal %}
+      </td>  </tr>
+<tr>
+    <td><b>Ethnic Purpose:</b></td>
+        <td>
+      {% if pgag.ethnic_purp.all %}
+      {% for ep in pgag.ethnic_purp.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/ethnicpurp/{{ ep.id }}/">{{ ep.type }}</a>{% endfor %}
+      {% else %}
+      none
+      {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;Quality of Information for Ethnic Purpose:</td>
+ <td>{% ifequal pgag.info_ethnic_purp 'giv' %}given{% endifequal %}
+      {% ifequal pgag.info_ethnic_purp 'inf' %}inferred{% endifequal %}
+      {% ifequal pgag.info_ethnic_purp 'na' %}not applicable{% endifequal %}
+      </td>  </tr>
+</table>
+<h3> Other Information </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+  <tr>
+    <td><b>Other Information:</b></td>
+    <td>{{ pgag.other|default_if_none:"none"}}</td>
+  </tr>
+</table>
+</table>
+
+
+<h2> New Variables from Meta-Analysis </h2>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+
+    </table>
+<h3> Purpose </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+     <tr>
+    <td><b>Purpose:</b></td>
+    <td>{{pgag.purpose_text|default_if_none:"none"}}</td>
+  </tr>
+ <tr>
+    <td><b>Relative Benefit(s) of PGM Use</b></td>
+    <td>
+      {% if pgag.relative_benefit.all %}
+      {% for sg in pgag.relative_benefit.all %}{% if forloop.counter0 %}; {% else %}{% endif %}{{ sg.name }}</a>{% endfor %}
+      {% else %}
+      unknown
+      {% endif %}
+    </td>
+  </tr>
+
+</table>
+<h3> Treatment of Civilians </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+
+<tr>
+    <td><b>Treatment of Civilians:</b></td>
+    <td>{{pgag.treatment_civilians|default_if_none:"none"}}</td>
+  </tr>
+    <tr>
+    <td><b>Type(s) of Violence against Civilians:</b></td>
+    <td>
+      {% if pgag.type_violence.all %}
+      {% for sg in pgag.type_violence.all %}{% if forloop.counter0 %}; {% else %}{% endif %}{{ sg.name }}</a>{% endfor %}
+      {% else %}
+      unknown
+      {% endif %}
+    </td>
+
+</table>
+<h3> Reasons for Membership </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+  <tr>
+    <td><b>PGM Members Coerced?</b></td>
+    <td>{% ifequal pgag.members_coerced 'noinf' %}no information{% else %}
+    {{ pgag.members_coerced }}{% endifequal %}</td>
+  </tr>
+      <tr>
+    <td><b>PGM Members Paid?</b></td>
+    <td>{% ifequal pgag.members_paid 'noinf' %}no information{% else %}
+    {{ pgag.members_paid }}{% endifequal %}</td>
+  </tr>
+      <tr>
+    <td><b>Reasons for Membership:</b></td>
+    <td>{{pgag.reason_membership|default_if_none:"none"}}</td>
+  </tr>
+    <tr>
+    <td><b>PGM Members Killed?</b></td>
+    <td>{% ifequal pgag.members_killed 'noinf' %}no information{% else %}
+    {{ pgag.members_killed }}{% endifequal %}</td>
+  </tr>
+
+</table>
+<h3> PGM Size </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+    <tr>
+    <td><b>Size:</b></td>
+    <td>{{pgag.size|default_if_none:"none"}}</td>
+  </tr>
+</table>
+<h3> Weapons and Training </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+    <tr>
+    <td><b>Weapons and Training:</b></td>
+    <td>{{pgag.weapon_training|default_if_none:"none"}}</td>
+  </tr>
+</table>
+<h3> Organisation </h3>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+      <tr>
+    <td><b>Organisation:</b></td>
+    <td>{{pgag.organisation|default_if_none:"none"}}</td>
+  </tr>
+</table>
+</table>
+
+<h2> Reference(s) for Meta-Analysis </h2>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+<p>
+<quotation>
+{{ pgag.reference_meta|linebreaksbr }}
+</quotation>
+</p>
+</table>
+</table>
+
+<h2>Evidence</h2>
+<ul>
+<li>Examine the <a href="/pgag/{{ pgag.id }}/evidence/">evidence</a> for this coding.</li>
+</ul>
+
+<h2>Progress Meta-Analysis </h2>
+<table cellspacing="15" width="100%">
+  <col width="50%">
+  <col width="100">
+     <tr>
+   <td><b>Coding completed?</b></td>
+    <td>{{ pgag.finished }}</td>
+    </tr>
+</table>
+</table>
+
+{% endblock %}

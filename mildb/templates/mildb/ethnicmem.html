@@ -1,0 +1,18 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %} Ethnic Membership {% endblock %}
+{% block main_heading %} Ethnic Membership {% endblock %}
+
+{% block content %}
+
+<p>
+Select an ethnic membership from the list below.
+</p>
+<table>
+  {% for em in ethnic_mems %}
+  <tr>
+    <td><a href="/ethnicmem/{{ em.id }}/">{{ em.type }}</a></td>
+  </tr>			 
+  {% endfor %}
+</table>
+{% endblock %}

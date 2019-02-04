@@ -1,0 +1,18 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %} Types of Material Support {% endblock %}
+{% block main_heading %} Types of Material Support {% endblock %}
+
+{% block content %}
+
+<p>
+Select a type of material support from the list below.
+</p>
+<table>
+  {% for s in supports %}
+  <tr>
+    <td><a href="/support/{{ s.id }}/">{{ s.type }}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

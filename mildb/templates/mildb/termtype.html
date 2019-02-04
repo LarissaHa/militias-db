@@ -1,0 +1,18 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %} Termination Types {% endblock %}
+{% block main_heading %} Termination Types {% endblock %}
+
+{% block content %}
+
+<p>
+Select a termination type from the list below.
+</p>
+<table>
+  {% for te in termtypes %}
+  <tr>
+    <td><a href="/termtype/{{ te.id }}/">{{ te.type }}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

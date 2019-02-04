@@ -1,0 +1,18 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %}Type of Relationship to the Government{% endblock %}
+{% block main_heading %}Type of Relationship to the Government{% endblock %}
+
+{% block content %}
+
+<p>
+Select the type of PGM relationship to the government. 
+</p>
+<table>
+  {% for rel in rels %}
+  <tr>
+    <td><a href="/type/{{ rel.0 }}/">{{ rel.1 }}</a></td>
+  </tr>			 
+  {% endfor %}
+</table>
+{% endblock %}

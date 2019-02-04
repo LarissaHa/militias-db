@@ -1,0 +1,18 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %}Type of Link to the Government{% endblock %}
+{% block main_heading %}Type of Link to the Government{% endblock %}
+
+{% block content %}
+
+<p>
+Select the type of Link to the government. 
+</p>
+<table>
+  {% for li in lin %}
+  <tr>
+    <td><a href="/link/{{ li.id }}/">{{ li.name }}</a></td>
+  </tr>			 
+  {% endfor %}
+</table>
+{% endblock %}

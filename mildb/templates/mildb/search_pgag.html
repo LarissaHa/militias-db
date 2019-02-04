@@ -1,0 +1,42 @@
+{% extends "mildb/newbase.html" %}
+{% load humanize %}
+
+{% block title %}Search PGMs{% endblock %}
+
+{% block main_heading %}Search PGMs by Name{% endblock %}
+
+{% block content %}
+
+<p> 
+<form action="." method="GET">
+    <input type="text" name="q" value="{{ query|escape }}">
+    <input type="submit" value="Search">
+</form>
+</p>
+
+  {% if query %}
+    <h3>PGM names containing "{{ query|escape }}":</h3>
+
+    {% if results %}
+      <table>
+	  {% for line in results %}
+	<tr>
+	  <td><a href="/country/{{ line.0.id }}">{{ line.0.name }}</a></td>
+	  {% for g in line.1 %}
+	  {% if forloop.first %}
+	  <td><a href="/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
+	  {% else %}
+	  <tr><td></td>
+	  <td><a href="/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
+	  {% endif %}
+	  {% endfor %}
+
+	  {% endfor %}
+      </table>
+    {% else %}
+      <p>No PGMs found</p>
+    {% endif %}
+  {% endif %}
+
+{% endblock %}
+

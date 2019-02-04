@@ -1,0 +1,18 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %} Ethnic Purpose {% endblock %}
+{% block main_heading %} Ethnic Purpose {% endblock %}
+
+{% block content %}
+
+<p>
+Select an ethnic group from the list below.
+</p>
+<table>
+  {% for ep in ethnic_purps %}
+  <tr>
+    <td><a href="/ethnicpurp/{{ ep.id }}/">{{ ep.type }}</a></td>
+  </tr>			 
+  {% endfor %}
+</table>
+{% endblock %}

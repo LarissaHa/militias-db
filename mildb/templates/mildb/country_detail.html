@@ -1,0 +1,19 @@
+{% extends "mildb/newbase.html" %}
+
+{% block title %}{{ country.name }}{% endblock %}
+{% block main_heading %}{{ country.name }}{% endblock %}
+
+{% block content %}
+
+<h3>Groups</h3>
+<p>The following groups have been reported as active during the period of data collection:</p>
+<table>
+{% for g in groups %}
+<tr><td><a href="/pgag/{{ g.id }}">{{ g.name }}</a></td></tr> 
+{% endfor %}
+</table>
+
+<h3>Operations</h3>
+<img src="{{ gchart }}"/>
+
+{% endblock %}
