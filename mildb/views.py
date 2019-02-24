@@ -37,6 +37,9 @@ def datasets(request):
         return render(request, 'mildb/login_error.html')
     return render(request, "mildb/datasets.html", {}) # else return...
 
+def imprint(request):
+    return render(request, "mildb/imprint.html", {})
+
 def ethnic(request):
     if not request.user.is_authenticated:
         return render(request, 'mildb/login_error.html')
@@ -152,8 +155,8 @@ def sort_groups_by_country(groups):
 
 
 def welcome(request):
-    if not request.user.is_authenticated:
-        return render(request, 'mildb/login_error.html')
+    #if not request.user.is_authenticated:
+    #    return render(request, 'mildb/login_error.html')
 
     return render(request, "mildb/welcome.html", {})
 

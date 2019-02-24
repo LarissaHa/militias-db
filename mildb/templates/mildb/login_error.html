@@ -1,18 +1,11 @@
-<html>
-<head>
-    {% load static %}
-<style>
-body {
-    margin: 3em;
-    font-family: 'sans serif';
-}
-</style>
-</head>
-<body>
+{% extends "mildb/newbase.html" %}
 
-<center><img src="{% static 'militia-header.jpg' %}" height="260" width="960" alt="Pro-Government Militia Website"/> 
+{% block title %}Not authorised{% endblock %}
+{% block main_heading %}Not authorised{% endblock %}
+
+{% block content %}
+<center>
 <p><b>You are not authorised to see this page.</b><br/>
 Please log in at the admin page.</p>
 </center>
-</body>
-</html>
+{% endblock %}

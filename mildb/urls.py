@@ -34,4 +34,5 @@ urlpatterns = [
     path('ethnicmem/<int:ethnicmem_id>/', views.ethnicmem_detail, name='ethnicmem_detail'),
     path('ethnicpurp/', views.ethnicpurp, name='ethnicpurp'),
     path('ethnicpurp/<int:ethnicpurp_id>/', views.ethnicpurp_detail, name='ethnicpurp_detail'),
+    path('imprint/', views.imprint, name="imprint"),
 ]

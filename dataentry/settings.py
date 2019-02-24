@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'w@+3*qytb^c7p)_j=o(%uob2^0up93aa)w7p^i=(7ll3@d*w#x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['militias-database.com', '.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition

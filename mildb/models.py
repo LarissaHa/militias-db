@@ -312,13 +312,11 @@ class PGAG(models.Model):
 				default='dy')
     
 	predecessor_group = models.ManyToManyField("self", symmetrical=False,
-						 blank=True,
-						 null=True)
+						 blank=True)
 	
 	successor_group = models.ManyToManyField("self",symmetrical=False,
 						related_name='successors',
-						 blank=True,
-						 null=True)
+						 blank=True)
 	# Problem: many to many field relates things symetrical, i.e. changes in both PGMs ("if I am your successor, you are mine")
 	# symmetrical = False prevents from doing this
 	# Source symmetrical: https://docs.djangoproject.com/en/1.8/ref/models/fields/#django.db.models.ManyToManyField.symmetrical
@@ -376,8 +374,7 @@ class PGAG(models.Model):
 						    blank=True)
 		
 	target = models.ManyToManyField(Target,
-					blank=True,
-					null=True)
+					blank=True)
 	
 	party_id = models.CharField("Name of Party Link",
 				    max_length=100,
@@ -407,8 +404,7 @@ class PGAG(models.Model):
 	supporters = models.ManyToManyField(Country,
 					    verbose_name="State sponsors",
 					    related_name='sponsors',
-					    blank=True,
-					    null=True)
+					    blank=True)
 	other_connection = models.CharField("Other connection", 
 					    max_length=400,
 					    blank=True)
@@ -418,8 +414,7 @@ class PGAG(models.Model):
 	ethnic_targ = models.ManyToManyField(Ethnic,
 				verbose_name="Ethnic Target",
 				help_text="Select or add EPR Group",
-				blank=True,
-				null=True)
+				blank=True)
 	
 	info_ethnic_targ = models.CharField("Quality of Information for Ethnic Targeting", 
 			       choices=QUAL,
@@ -430,7 +425,6 @@ class PGAG(models.Model):
 			       verbose_name="Ethnic Membership",
 			       related_name='ethnic_target',
 			       blank=True,
-			       null=True,
 			       help_text="Select or add EPR Group")
 	
 	info_ethnic_mem = models.CharField("Quality of Information for Ethnic Membership", 
@@ -442,7 +436,6 @@ class PGAG(models.Model):
 				verbose_name="Ethnic Purpose",
 				related_name='ethnic_mem',
 				blank=True,
-				null=True,
 				help_text="Select or add EPR Group")
 
 	info_ethnic_purp = models.CharField("Quality of Information for Ethnic Purpose", 
@@ -493,11 +486,11 @@ class PGAG(models.Model):
 	purpose_text = models.TextField("Purpose",
 					max_length=1000,
 				 	blank=True)
-	relative_benefit = models.ManyToManyField(RelativeBenefit,blank=True, null=True, verbose_name="Relative Benefit")
+	relative_benefit = models.ManyToManyField(RelativeBenefit,blank=True, verbose_name="Relative Benefit")
 	treatment_civilians =  models.TextField("Treatment of Civilians",
 					max_length=1000,
 					blank=True)
-	type_violence = models.ManyToManyField(TypeViolence, verbose_name="Types of Violence", blank=True, null=True)
+	type_violence = models.ManyToManyField(TypeViolence, verbose_name="Types of Violence", blank=True)
 	members_killed = models.CharField(choices=FREQCAT,
 					      max_length=30,
 					      default='noinf')
