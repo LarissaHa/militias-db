@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <td><b>Country:</b></td>
-    <td><a href="/country/{{ pgag.country.id }}">{{ pgag.country.name }}</a></td>
+    <td><a href="/militias-db/country/{{ pgag.country.id }}">{{ pgag.country.name }}</a></td>
   </tr>
   <tr>
     <td><b>Date formed:</b></td>
@@ -65,7 +65,7 @@
     <td><b>Termination Type(s):</b></td>
         <td>
       {% if pgag.termination_types.all %}
-      {% for tt in pgag.termination_types.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/termtype/{{ tt.id }}/">{{ tt.type }}</a>{% endfor %}
+      {% for tt in pgag.termination_types.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/termtype/{{ tt.id }}/">{{ tt.type }}</a>{% endfor %}
       {% else %}
       none
       {% endif %}
@@ -83,7 +83,7 @@
       {% if pgag.predecessor_group.all %}
       {% for sg in pgag.predecessor_group.all %}
       {% if forloop.counter0 %}, {% else %}{% endif %}
-      <a href="/pgag/{{ sg.id }}/">{{ sg.name }}</a>
+      <a href="/militias-db/pgag/{{ sg.id }}/">{{ sg.name }}</a>
       {% endfor %}
       {% else %}
       none
@@ -96,7 +96,7 @@
       {% if pgag.successor_group.all %}
       {% for sg in pgag.successor_group.all %}
       {% if forloop.counter0 %}, {% else %}{% endif %}
-      <a href="/pgag/{{ sg.id }}/">{{ sg.name }}</a>
+      <a href="/militias-db/pgag/{{ sg.id }}/">{{ sg.name }}</a>
       {% endfor %}
       {% else %}
       none
@@ -152,7 +152,7 @@
   
   <!-- <tr> -->
   <!--   <td><b>Government Relation:</b></td> -->
-  <!--   <td><a href="/type/{{ pgag.government_relation }}/">{{ pname }}</a></td> -->
+  <!--   <td><a href="/militias-db/type/{{ pgag.government_relation }}/">{{ pname }}</a></td> -->
   <!-- </tr> -->
  <tr>
     <td><b>Created by the Government?:</b></td>
@@ -171,7 +171,7 @@
     <td><b>Government Link(s):</b></td>
     <td>
       {% if pgag.government_link.all %}
-      {% for sg in pgag.government_link.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/link/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
+      {% for sg in pgag.government_link.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/link/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
       {% else %}
       none
       {% endif %}
@@ -203,7 +203,7 @@
     <td><b>Type(s) of Material Support:</b></td>
         <td>
       {% if pgag.support_types.all %}
-      {% for sg in pgag.support_types.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/support/{{ sg.id }}/">{{ sg.type }}</a>{% endfor %}
+      {% for sg in pgag.support_types.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/support/{{ sg.id }}/">{{ sg.type }}</a>{% endfor %}
       {% else %}
       none
       {% endif %}
@@ -214,7 +214,7 @@
     <td><b>State Sponsor(s):</b></td>
     <td>
       {% if pgag.supporters.all %}
-      {% for sg in pgag.supporters.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/country/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
+      {% for sg in pgag.supporters.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/country/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
       {% else %}
       none
       {% endif %}
@@ -235,7 +235,7 @@
     <td><b>Membership:</b></td>
     <td>
       {% if pgag.membership.all %}
-      {% for sg in pgag.membership.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/member/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
+      {% for sg in pgag.membership.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/member/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
       {% else %}
       Unknown
       {% endif %}
@@ -266,7 +266,7 @@
     <td><b>Target(s):</b></td>
     <td>
       {% if pgag.target.all %}
-      {% for sg in pgag.target.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/target/{{ sg.id }}/">{{ sg.type }}</a>{% endfor %}
+      {% for sg in pgag.target.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/target/{{ sg.id }}/">{{ sg.type }}</a>{% endfor %}
       {% else %}
       None
       {% endif %}
@@ -275,7 +275,7 @@
     <td><b>Purpose(s):</b></td>
         <td>
       {% if pgag.purpose.all %}
-      {% for sg in pgag.purpose.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/purpose/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
+      {% for sg in pgag.purpose.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/purpose/{{ sg.id }}/">{{ sg.name }}</a>{% endfor %}
       {% else %}
       None
       {% endif %}
@@ -290,7 +290,7 @@
     <td><b>Ethnic Target(s):</b></td>
         <td>
       {% if pgag.ethnic_targ.all %}
-      {% for et in pgag.ethnic_targ.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/ethnictarg/{{ et.id }}/">{{ et.type }}</a>{% endfor %}
+      {% for et in pgag.ethnic_targ.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/ethnictarg/{{ et.id }}/">{{ et.type }}</a>{% endfor %}
       {% else %}
       none
       {% endif %}
@@ -307,7 +307,7 @@
     <td><b>Ethnic Membership:</b></td>
         <td>
       {% if pgag.ethnic_mem.all %}
-      {% for em in pgag.ethnic_mem.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/ethnicmem/{{ em.id }}/">{{ em.type }}</a>{% endfor %}
+      {% for em in pgag.ethnic_mem.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/ethnicmem/{{ em.id }}/">{{ em.type }}</a>{% endfor %}
       {% else %}
       none
       {% endif %}
@@ -323,7 +323,7 @@
     <td><b>Ethnic Purpose:</b></td>
         <td>
       {% if pgag.ethnic_purp.all %}
-      {% for ep in pgag.ethnic_purp.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/ethnicpurp/{{ ep.id }}/">{{ ep.type }}</a>{% endfor %}
+      {% for ep in pgag.ethnic_purp.all %}{% if forloop.counter0 %}; {% else %}{% endif %}<a href="/militias-db/ethnicpurp/{{ ep.id }}/">{{ ep.type }}</a>{% endfor %}
       {% else %}
       none
       {% endif %}
@@ -462,7 +462,7 @@
 
 <h2>Evidence</h2>
 <ul>
-<li>Examine the <a href="/pgag/{{ pgag.id }}/evidence/">evidence</a> for this coding.</li>
+<li>Examine the <a href="/militias-db/pgag/{{ pgag.id }}/evidence/">evidence</a> for this coding.</li>
 </ul>
 
 <h2>Progress Meta-Analysis </h2>

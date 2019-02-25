@@ -13,7 +13,7 @@
 </form>
 </p>
 
-<p>Alternatively you can browse a <a href="/country-browse/">complete list</a></p>
+<p>Alternatively you can browse a <a href="/militias-db/country-browse/">complete list</a></p>
 
 
   {% if query %}
@@ -22,7 +22,7 @@
     {% if results %}
       <table>
       {% for c in results %}
-        <tr><td><a href="/country/{{ c.id }}">{{ c.name }}</a></td></tr>
+        <tr><td><a href="/militias-db/country/{{ c.id }}">{{ c.name }}</a></td></tr>
       {% endfor %}
       </table>
     {% else %}

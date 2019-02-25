@@ -8,10 +8,10 @@
   <tr><td><b>Country</b></td><td><b>Groups</b></td></tr>
   {% for item in results %}
   <tr>
-    <td><a href="/country/{{ item.0.id }}">{{ item.0.name }}</a></td>
+    <td><a href="/militias-db/country/{{ item.0.id }}">{{ item.0.name }}</a></td>
     {% for g in item.1 %}
     {% if forloop.first %}{% else %}<tr><td></td>{% endif %}
-    <td><a href="/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
+    <td><a href="/militias-db/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
     {% endfor %}
   {% endfor %}
 </table>

@@ -21,13 +21,13 @@
       <table>
 	  {% for line in results %}
 	<tr>
-	  <td><a href="/country/{{ line.0.id }}">{{ line.0.name }}</a></td>
+	  <td><a href="/militias-db/country/{{ line.0.id }}">{{ line.0.name }}</a></td>
 	  {% for g in line.1 %}
 	  {% if forloop.first %}
-	  <td><a href="/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
+	  <td><a href="/militias-db/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
 	  {% else %}
 	  <tr><td></td>
-	  <td><a href="/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
+	  <td><a href="/militias-db/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
 	  {% endif %}
 	  {% endfor %}
 

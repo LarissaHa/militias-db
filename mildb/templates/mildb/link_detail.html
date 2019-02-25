@@ -8,13 +8,13 @@
   <tr><td><b>Country</b></td><td><b>Groups</b></td></tr>
   {% for item in results %}
   <tr>
-    <td><a href="/country/{{ item.0.id }}">{{ item.0.name }}</a></td>
+    <td><a href="/militias-db/country/{{ item.0.id }}">{{ item.0.name }}</a></td>
     {% if item.1 %}
     {% for g in item.1 %}
     {% if forloop.first %}
-    <td><a href="/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
+    <td><a href="/militias-db/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
     {% else %}
-    <tr><td></td><td><a href="/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
+    <tr><td></td><td><a href="/militias-db/pgag/{{ g.id }}">{{ g.name }}</a></td></tr>
     {% endif %}
     {% endfor %}
     {% else %}
